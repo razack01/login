@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+// import GetDetails from "./viewdetails";
+import App1 from './viewdetails'
 function Home() {
   const [posts, setPosts] = useState([]);
   const [bibleData, setBibledata] = useState([]);
@@ -22,8 +24,8 @@ function Home() {
 
   const addBook = (val, index) => {
     console.log("index:", index);
-    console.log("value:", val);
-    setSearch_index(index);
+    console.log("value:", val.id);
+    setSearch_index(val.id);
     if (searchbook.length > 0) {
       setSearchbook(() => [...searchbook, val]);
     }
@@ -45,7 +47,7 @@ function Home() {
 
     localStorage.setItem("Data", JSON.stringify(value));
   };
-
+// console.log("123search_index",search_index,bibleData)
   return (
     <div className="home-container">
       <div className="home-form">
@@ -85,7 +87,7 @@ function Home() {
                       <td>{e.description}</td>
                       <div>
                         <td>
-                          <button onClick={() => addBook(e,i)}>View</button>
+                          <Link to={`/app1/${e.id}`}><button onClick={() => addBook(e,i)}>View</button></Link>
                         </td>
                       </div>
                     </tr>
